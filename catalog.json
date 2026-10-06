@@ -1,0 +1,425 @@
+{
+  "version": 1,
+  "updated": "2026-10-06",
+  "about": "Index of the skills in this repo. Claude reads this file to choose skills for a project; see INSTALL.md. 'tier' is core (useful in almost any software project), recommended (install when the signals match), or optional (install only when asked or clearly needed). 'signals' are things to look for in the target project.",
+  "skills": [
+    {
+      "name": "ai-todo",
+      "path": "skills/ai-todo",
+      "kind": "skill",
+      "category": "workflow",
+      "tier": "core",
+      "summary": "Keeps AI-TODO.md: Claude's plan and log (in progress, next, blocked, done) so any session can resume.",
+      "signals": ["multi-session project", "owner wants to see what Claude is doing"],
+      "pairs_with": ["human-todo", "handoff"],
+      "upstream": { "repo": "MoSbeaa/claude-skills", "path": "skills/ai-todo", "license": "owner's own" }
+    },
+    {
+      "name": "human-todo",
+      "path": "skills/human-todo",
+      "kind": "skill",
+      "category": "workflow",
+      "tier": "core",
+      "summary": "Keeps HUMAN-TODO.md: the owner's checklist of manual steps (logins, secrets, decisions, merges) with exact instructions.",
+      "signals": ["external accounts or services to set up", "owner does manual steps"],
+      "pairs_with": ["ai-todo", "handoff"],
+      "upstream": { "repo": "MoSbeaa/claude-skills", "path": "skills/human-todo", "license": "owner's own" }
+    },
+    {
+      "name": "handoff",
+      "path": "skills/handoff",
+      "kind": "skill",
+      "category": "workflow",
+      "tier": "core",
+      "summary": "On 'handoff', writes handoff.md (goal, state, active files, changes, failed attempts, next steps) so a fresh session continues.",
+      "signals": ["long-running project", "sessions get cleared"],
+      "pairs_with": ["ai-todo", "human-todo"],
+      "upstream": { "repo": "MoSbeaa/claude-skills", "path": "skills/handoff", "license": "owner's own" }
+    },
+    {
+      "name": "using-agent-skills",
+      "path": "skills/using-agent-skills",
+      "kind": "skill",
+      "category": "workflow",
+      "tier": "core",
+      "summary": "Meta-skill: how to discover and pick the right skill for the task at hand. Install whenever several addyosmani skills are installed.",
+      "signals": ["installing 4+ of the engineering-practice skills"],
+      "pairs_with": [],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/using-agent-skills", "license": "MIT" }
+    },
+    {
+      "name": "context-engineering",
+      "path": "skills/context-engineering",
+      "kind": "skill",
+      "category": "workflow",
+      "tier": "recommended",
+      "summary": "Sets up rules files (CLAUDE.md) and context for a project; fixes degraded agent output.",
+      "signals": ["new project with no CLAUDE.md", "large codebase"],
+      "pairs_with": [],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/context-engineering", "license": "MIT" }
+    },
+    {
+      "name": "idea-refine",
+      "path": "skills/idea-refine",
+      "kind": "skill",
+      "category": "planning",
+      "tier": "recommended",
+      "summary": "Turns a vague idea into a sharp concept through divergent then convergent thinking; writes to docs/ideas/.",
+      "signals": ["greenfield project", "product idea not yet defined"],
+      "pairs_with": ["interview-me", "planning-and-task-breakdown"],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/idea-refine", "license": "MIT" }
+    },
+    {
+      "name": "interview-me",
+      "path": "skills/interview-me",
+      "kind": "skill",
+      "category": "planning",
+      "tier": "recommended",
+      "summary": "One-question-at-a-time interview to find what the user actually wants before any plan or code.",
+      "signals": ["underspecified request", "greenfield project"],
+      "pairs_with": ["idea-refine"],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/interview-me", "license": "MIT" }
+    },
+    {
+      "name": "planning-and-task-breakdown",
+      "path": "skills/planning-and-task-breakdown",
+      "kind": "skill",
+      "category": "planning",
+      "tier": "core",
+      "summary": "Breaks a spec or requirements into ordered, implementable tasks; spots parallel work.",
+      "signals": ["any project with multi-step features"],
+      "pairs_with": ["ai-todo"],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/planning-and-task-breakdown", "license": "MIT" }
+    },
+    {
+      "name": "constraint-driven-development",
+      "path": "skills/constraint-driven-development",
+      "kind": "skill",
+      "category": "planning",
+      "tier": "recommended",
+      "summary": "Writes the quality bar to CONSTRAINTS.md (coverage, perf, a11y thresholds) and catches agents lowering it (skipped tests, ts-ignore).",
+      "signals": ["production project", "no written quality bar", "agents silencing checks"],
+      "pairs_with": ["test-driven-development", "code-review-and-quality"],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/constraint-driven-development", "license": "MIT" }
+    },
+    {
+      "name": "test-driven-development",
+      "path": "skills/test-driven-development",
+      "kind": "skill",
+      "category": "engineering",
+      "tier": "core",
+      "summary": "Red-green-refactor loop for any logic change or bug fix.",
+      "signals": ["any codebase with tests, or that should have them"],
+      "pairs_with": ["debugging-and-error-recovery"],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/test-driven-development", "license": "MIT" }
+    },
+    {
+      "name": "debugging-and-error-recovery",
+      "path": "skills/debugging-and-error-recovery",
+      "kind": "skill",
+      "category": "engineering",
+      "tier": "core",
+      "summary": "Systematic root-cause debugging when tests fail, builds break, or behaviour is unexpected.",
+      "signals": ["any codebase"],
+      "pairs_with": ["test-driven-development"],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/debugging-and-error-recovery", "license": "MIT" }
+    },
+    {
+      "name": "code-review-and-quality",
+      "path": "skills/code-review-and-quality",
+      "kind": "skill",
+      "category": "engineering",
+      "tier": "core",
+      "summary": "Multi-axis review of a diff or PR before merging.",
+      "signals": ["any codebase", "PR workflow"],
+      "pairs_with": ["security-and-hardening"],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/code-review-and-quality", "license": "MIT" }
+    },
+    {
+      "name": "git-workflow-and-versioning",
+      "path": "skills/git-workflow-and-versioning",
+      "kind": "skill",
+      "category": "engineering",
+      "tier": "core",
+      "summary": "Branching, atomic commits, PRs, conflicts, releases, semver and changelogs.",
+      "signals": ["git repository"],
+      "pairs_with": [],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/git-workflow-and-versioning", "license": "MIT" }
+    },
+    {
+      "name": "source-driven-development",
+      "path": "skills/source-driven-development",
+      "kind": "skill",
+      "category": "engineering",
+      "tier": "recommended",
+      "summary": "Checks implementation decisions against official framework/library docs; avoids outdated patterns.",
+      "signals": ["fast-moving frameworks (Next.js, Expo, new major versions)"],
+      "pairs_with": [],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/source-driven-development", "license": "MIT" }
+    },
+    {
+      "name": "api-and-interface-design",
+      "path": "skills/api-and-interface-design",
+      "kind": "skill",
+      "category": "engineering",
+      "tier": "recommended",
+      "summary": "Stable REST/GraphQL APIs, module boundaries and type contracts between frontend and backend.",
+      "signals": ["backend or API", "monorepo with shared packages", "multiple clients"],
+      "pairs_with": ["security-and-hardening"],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/api-and-interface-design", "license": "MIT" }
+    },
+    {
+      "name": "security-and-hardening",
+      "path": "skills/security-and-hardening",
+      "kind": "skill",
+      "category": "engineering",
+      "tier": "recommended",
+      "summary": "OWASP Top Ten, auth/session safety, input handling, dependency audits, privacy (GDPR/CCPA).",
+      "signals": ["user accounts or auth", "personal data", "payments", "public endpoints"],
+      "pairs_with": ["code-review-and-quality"],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/security-and-hardening", "license": "MIT" }
+    },
+    {
+      "name": "performance-optimization",
+      "path": "skills/performance-optimization",
+      "kind": "skill",
+      "category": "engineering",
+      "tier": "optional",
+      "summary": "Frontend, backend and database performance: Core Web Vitals, N+1 queries, profiling.",
+      "signals": ["performance requirements", "reported slowness", "web app in production"],
+      "pairs_with": ["vercel-react-best-practices"],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/performance-optimization", "license": "MIT" }
+    },
+    {
+      "name": "observability-and-instrumentation",
+      "path": "skills/observability-and-instrumentation",
+      "kind": "skill",
+      "category": "engineering",
+      "tier": "recommended",
+      "summary": "Logging, metrics, tracing and alerting so production behaviour is diagnosable.",
+      "signals": ["deployed service", "Sentry/OpenTelemetry/logging setup"],
+      "pairs_with": [],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/observability-and-instrumentation", "license": "MIT" }
+    },
+    {
+      "name": "deprecation-and-migration",
+      "path": "skills/deprecation-and-migration",
+      "kind": "skill",
+      "category": "engineering",
+      "tier": "optional",
+      "summary": "Removing or replacing systems and APIs; zero-downtime schema changes (expand/contract).",
+      "signals": ["existing production system being changed", "framework or database migration"],
+      "pairs_with": [],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/deprecation-and-migration", "license": "MIT" }
+    },
+    {
+      "name": "ci-cd-and-automation",
+      "path": "skills/ci-cd-and-automation",
+      "kind": "skill",
+      "category": "engineering",
+      "tier": "recommended",
+      "summary": "Build and deploy pipelines, quality gates, test runners in CI, deployment strategies (any CI provider).",
+      "signals": ["CI config exists or is planned"],
+      "pairs_with": ["github-actions-templates"],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/ci-cd-and-automation", "license": "MIT" }
+    },
+    {
+      "name": "github-actions-templates",
+      "path": "skills/github-actions-templates",
+      "kind": "skill",
+      "category": "infrastructure",
+      "tier": "recommended",
+      "summary": "Ready GitHub Actions workflows for test, build and deploy.",
+      "signals": [".github/workflows/", "GitHub-hosted repo"],
+      "pairs_with": ["ci-cd-and-automation"],
+      "upstream": { "repo": "wshobson/agents", "path": "plugins/cicd-automation/skills/github-actions-templates", "license": "MIT" }
+    },
+    {
+      "name": "frontend-ui-engineering",
+      "path": "skills/frontend-ui-engineering",
+      "kind": "skill",
+      "category": "frontend",
+      "tier": "recommended",
+      "summary": "Accessible (WCAG), responsive, production-quality UI: components, layouts, state.",
+      "signals": ["any web or app UI"],
+      "pairs_with": ["vercel-composition-patterns", "browser-testing-with-devtools"],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/frontend-ui-engineering", "license": "MIT" }
+    },
+    {
+      "name": "browser-testing-with-devtools",
+      "path": "skills/browser-testing-with-devtools",
+      "kind": "skill",
+      "category": "frontend",
+      "tier": "optional",
+      "summary": "Inspects DOM, console, network and performance in a real browser via Chrome DevTools MCP.",
+      "signals": ["web app", "chrome-devtools MCP server configured"],
+      "requires": ["chrome-devtools MCP server"],
+      "pairs_with": ["frontend-ui-engineering"],
+      "upstream": { "repo": "addyosmani/agent-skills", "path": "skills/browser-testing-with-devtools", "license": "MIT" }
+    },
+    {
+      "name": "vercel-react-best-practices",
+      "path": "skills/vercel-react-best-practices",
+      "kind": "skill",
+      "category": "frontend",
+      "tier": "recommended",
+      "summary": "Vercel's React/Next.js performance rules (waterfalls, bundle size, server components, data fetching).",
+      "signals": ["package.json depends on react or next"],
+      "pairs_with": ["vercel-composition-patterns"],
+      "upstream": { "repo": "vercel-labs/agent-skills", "path": "skills/react-best-practices", "license": "MIT" }
+    },
+    {
+      "name": "vercel-composition-patterns",
+      "path": "skills/vercel-composition-patterns",
+      "kind": "skill",
+      "category": "frontend",
+      "tier": "recommended",
+      "summary": "React composition patterns: compound components, no boolean-prop sprawl, React 19 APIs.",
+      "signals": ["package.json depends on react", "component library or design system"],
+      "pairs_with": ["vercel-react-best-practices"],
+      "upstream": { "repo": "vercel-labs/agent-skills", "path": "skills/composition-patterns", "license": "MIT" }
+    },
+    {
+      "name": "vercel-react-native-skills",
+      "path": "skills/vercel-react-native-skills",
+      "kind": "skill",
+      "category": "mobile",
+      "tier": "recommended",
+      "summary": "React Native/Expo performance: lists, animations, native modules, fonts, imports.",
+      "signals": ["package.json depends on react-native or expo"],
+      "pairs_with": ["expo-router", "expo-native-ui"],
+      "upstream": { "repo": "vercel-labs/agent-skills", "path": "skills/react-native-skills", "license": "MIT" }
+    },
+    {
+      "name": "expo-router",
+      "path": "skills/expo-router",
+      "kind": "skill",
+      "category": "mobile",
+      "tier": "recommended",
+      "summary": "Expo Router navigation: file-based routes, stacks, tabs, modals, sheets, headers, search.",
+      "signals": ["package.json depends on expo-router", "app/ directory in an Expo app"],
+      "pairs_with": ["expo-native-ui"],
+      "upstream": { "repo": "expo/skills", "path": "plugins/expo/skills/expo-router", "license": "MIT" }
+    },
+    {
+      "name": "expo-native-ui",
+      "path": "skills/expo-native-ui",
+      "kind": "skill",
+      "category": "mobile",
+      "tier": "recommended",
+      "summary": "Native-feeling Expo screens: Apple HIG, semantic colors, native controls, SF Symbols, media, effects.",
+      "signals": ["package.json depends on expo"],
+      "pairs_with": ["expo-router"],
+      "upstream": { "repo": "expo/skills", "path": "plugins/expo/skills/expo-native-ui", "license": "MIT" }
+    },
+    {
+      "name": "expo-dev-client",
+      "path": "skills/expo-dev-client",
+      "kind": "skill",
+      "category": "mobile",
+      "tier": "optional",
+      "summary": "Build and distribute Expo development clients (local or TestFlight) when Expo Go isn't enough.",
+      "signals": ["expo app with native modules", "eas.json"],
+      "pairs_with": ["expo-native-ui"],
+      "upstream": { "repo": "expo/skills", "path": "plugins/expo/skills/expo-dev-client", "license": "MIT" }
+    },
+    {
+      "name": "neon",
+      "path": "skills/neon",
+      "kind": "skill",
+      "category": "infrastructure",
+      "tier": "recommended",
+      "summary": "Neon overview: Postgres, Auth, object storage, functions, AI gateway; CLI/MCP setup; branch-first workflow.",
+      "signals": ["neon.tech in DATABASE_URL", "@neondatabase/* dependency", ".neon or neon.ts file", "owner chose Neon"],
+      "pairs_with": ["neon-postgres", "neon-postgres-branches"],
+      "upstream": { "repo": "neondatabase/agent-skills", "path": "skills/neon", "license": "Apache-2.0" }
+    },
+    {
+      "name": "neon-postgres",
+      "path": "skills/neon-postgres",
+      "kind": "skill",
+      "category": "infrastructure",
+      "tier": "recommended",
+      "summary": "Neon Postgres: pooled vs direct connections, migrations, branching, autoscaling, replicas, search.",
+      "signals": ["same as neon"],
+      "pairs_with": ["neon"],
+      "upstream": { "repo": "neondatabase/agent-skills", "path": "skills/neon-postgres", "license": "Apache-2.0" }
+    },
+    {
+      "name": "neon-postgres-branches",
+      "path": "skills/neon-postgres-branches",
+      "kind": "skill",
+      "category": "infrastructure",
+      "tier": "optional",
+      "summary": "Choosing and creating Neon branches for testing migrations, per-PR branches, schema-only branches.",
+      "signals": ["Neon plus CI or preview environments"],
+      "pairs_with": ["neon"],
+      "upstream": { "repo": "neondatabase/agent-skills", "path": "skills/neon-postgres-branches", "license": "Apache-2.0" }
+    },
+    {
+      "name": "stripe-best-practices",
+      "path": "skills/stripe-best-practices",
+      "kind": "skill",
+      "category": "infrastructure",
+      "tier": "recommended",
+      "summary": "Stripe integration decisions: Checkout vs PaymentIntents, billing/subscriptions, Connect, tax, webhooks, key security.",
+      "signals": ["stripe dependency", "payments or subscriptions planned"],
+      "pairs_with": ["security-and-hardening"],
+      "upstream": { "repo": "stripe/ai", "path": "skills/stripe-best-practices", "license": "MIT" }
+    },
+    {
+      "name": "find-skills",
+      "path": "skills/find-skills",
+      "kind": "skill",
+      "category": "meta",
+      "tier": "optional",
+      "summary": "Searches the public skills ecosystem (npx skills, skills.sh) for skills this repo doesn't have.",
+      "signals": ["project needs a technology none of these skills cover"],
+      "pairs_with": [],
+      "upstream": { "repo": "vercel-labs/skills", "path": "skills/find-skills", "license": "MIT" }
+    }
+  ],
+  "templates": [
+    {
+      "name": "project-specs",
+      "path": "templates/project-specs",
+      "kind": "template",
+      "install_as": "<project-slug>-specs",
+      "summary": "Maps the project's spec documents (PRD, architecture, data model, API, security) and its non-negotiable rules, so Claude reads them before coding.",
+      "signals": ["project has a docs/ or specs folder with product/architecture documents"],
+      "pairs_with": ["plan-feature", "spec-review"]
+    },
+    {
+      "name": "plan-feature",
+      "path": "templates/plan-feature",
+      "kind": "template",
+      "install_as": "plan-feature",
+      "summary": "/plan-feature <description>: writes a spec-backed plan (scope, data, API, security, tests, slices) to docs/plans/.",
+      "signals": ["project has spec documents", "feature work planned in slices"],
+      "pairs_with": ["project-specs"]
+    },
+    {
+      "name": "spec-review",
+      "path": "templates/spec-review",
+      "kind": "template",
+      "install_as": "spec-review",
+      "summary": "/spec-review [branch|PR|path]: reviews changes against the project's security and definition-of-done rules and writes the completion report.",
+      "signals": ["project has a security or rules document"],
+      "pairs_with": ["project-specs"]
+    }
+  ],
+  "external": [
+    {
+      "name": "emilkowalski/skills",
+      "kind": "external",
+      "category": "frontend",
+      "tier": "optional",
+      "summary": "Emil Kowalski's design-engineering skills: UI design, animations (web and Expo), Apple-style design, animation reviews. Not copied here; installed from the author. See Frontend.md.",
+      "signals": ["UI-heavy web or mobile app", "animations or motion work", "user asks for design polish"],
+      "skills": ["emil-design-eng", "animate", "animate-expo", "review-animations", "improve-animations", "apple-design", "pick-ui-library"],
+      "install": "npx skills add emilkowalski/skills --skill <name>",
+      "note": "The author recommends using these case by case (for example to review animations) rather than always on.",
+      "upstream": { "repo": "emilkowalski/skills", "path": "skills", "license": "MIT" }
+    }
+  ]
+}
